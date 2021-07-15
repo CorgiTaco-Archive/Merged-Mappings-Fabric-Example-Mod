@@ -8,7 +8,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'net.fabricmc:fabric-loom:0.5-SNAPSHOT'
+		classpath 'net.fabricmc:fabric-loom:0.8.3'
 	}
 }
 
@@ -17,8 +17,11 @@ plugins {
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(16)
+	}
+}
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -48,16 +51,10 @@ minecraft {
 processResources {
 	inputs.property "version", project.version
 
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
+	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
-
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}
 }
-
 // ensure that the encoding is set to UTF-8, no matter what the system default is
 // this fixes some edge cases with special characters not displaying correctly
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
