@@ -8,7 +8,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'net.fabricmc:fabric-loom:0.8.3'
+		classpath 'net.fabricmc:fabric-loom:0.10.23'
 	}
 }
 
@@ -26,12 +26,6 @@ java {
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
-
-
-loom {
-	customManifest = "https://gist.githubusercontent.com/modmuss50/6e00baf80dcbaa42f3a2fc846b290128/raw/f035ef8f75164f56ec6352809a34841d326bae1c/1_18_experimental-snapshot-1.json"
-}
-
 
 dependencies {
 	//to change the versions see the gradle.properties file
